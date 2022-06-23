@@ -1,5 +1,5 @@
 <template>
-  <Layout>
+  <!--Layout-->
     <form @submit.prevent="submitForm">
       <fieldset>
         <legend>{{ msg }}</legend>
@@ -45,14 +45,16 @@
         </p>
       </fieldset>
     </form>
-  </Layout>
+  <!--/Layout-->
 </template>
 
 <script>
-import Layout from './Layout'
+// import Layout from './Layout'
 
 export default {
   name: 'Contact',
+
+  // layout: Layout,
 
   props: {
     errors: {
@@ -66,7 +68,7 @@ export default {
 
   data() {
     return {
-      form: this.$inertia.form({
+      form: this.$inertia.form('Contact', {
         name: '',
         email: '',
         subject: '',
@@ -91,9 +93,9 @@ export default {
     }
   },
 
-  components: {
+  /*components: {
     Layout,
-  },
+  },*/
 };
 </script>
 

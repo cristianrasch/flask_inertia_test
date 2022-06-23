@@ -1,5 +1,5 @@
 <template>
-  <Layout>
+  <!--Layout-->
     <div class="content">
       <img class="logo" src="https://flask.palletsprojects.com/en/2.0.x/_static/flask-icon.png" alt="Flask logo">
       <img class="logo" src="https://avatars.githubusercontent.com/u/47703742?s=200&v=4" alt="Inertia logo">
@@ -12,14 +12,16 @@
         <a href="https://flask-inertia.readthedocs.io/">documentation</a>
       </p>
     </div>
-  </Layout>
+  <!--/Layout-->
 </template>
 
 <script>
-import Layout from './Layout'
+// import Layout from './Layout'
 
 export default {
   name: 'Index',
+
+  // layout: Layout,
 
   data() {
     return {
@@ -27,9 +29,9 @@ export default {
     }
   },
 
-  components: {
+  /*components: {
     Layout,
-  },
+  },*/
 };
 </script>
 

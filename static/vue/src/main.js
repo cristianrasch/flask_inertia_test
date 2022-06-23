@@ -7,6 +7,8 @@ InertiaProgress.init();
 
 import './css/app.css';
 
+import Layout from './pages/Layout'
+
 // create a plugin to use window.reverseUrl in our Components
 const routePlugin = {
   install: (app, _options) => {
@@ -17,6 +19,8 @@ const routePlugin = {
 createInertiaApp({
   resolve: async name => {
     const page = await import(`./pages/${name}`);
+    page.default.layout ??= Layout;
+    // page.default.layout = page.default.layout || Layout;
     return page.default;
   },
   setup({ el, app, props, plugin }) {

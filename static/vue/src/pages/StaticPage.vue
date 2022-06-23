@@ -1,14 +1,16 @@
 <template>
-  <Layout>
+  <!--Layout-->
     <h1>Your are on the '{{ msg }}' page.</h1>
-  </Layout>
+  <!--/Layout-->
 </template>
 
 <script>
-import Layout from './Layout'
+// import Layout from './Layout'
 
 export default {
   name: 'StaticPage',
+
+  // layout: Layout,
 
   props: {
     msg: {
@@ -17,9 +19,9 @@ export default {
     }
   },
 
-  components: {
+  /*components: {
     Layout,
-  },
+  },*/
 };
 </script>
 

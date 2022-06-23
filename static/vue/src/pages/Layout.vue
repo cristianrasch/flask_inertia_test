@@ -1,6 +1,6 @@
 <template>
   <main>
-    <Head :title="$page.props.title" />
+    <Head title="Welcome to my app!" />
 
     <header>
       <menu>
@@ -10,8 +10,8 @@
       </menu>
     </header>
 
-    <p v-for="(msg, i) in $page.props.success" :key="i" class="success">{{ msg }}</p>
-    <p v-for="(msg, i) in $page.props.alert" :key="i" class="alert">{{ msg }}</p>
+    <p v-for="(msg, i) in $page.props.flash_success" :key="i" class="success">{{ msg }}</p>
+    <p v-for="(msg, i) in $page.props.flash_error" :key="i" class="error">{{ msg }}</p>
 
     <article>
       <slot />
