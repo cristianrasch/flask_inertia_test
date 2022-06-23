@@ -3,7 +3,10 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
-    <link ref="stylesheet" href="{{ url_for('static', filename='css/app.css') }}" />
+    <!--link ref="stylesheet" href="{{ url_for('static', filename='css/app.css') }}" /-->
+    <style>
+      @import url('{{ url_for("static", filename="css/app.css") }}');
+    </style>
 
     <script lang="javascript">
       {{ inertia.include_router() }}
