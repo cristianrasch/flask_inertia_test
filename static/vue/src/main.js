@@ -1,17 +1,9 @@
 import { createApp, h, App } from 'vue';
 import { createInertiaApp } from '@inertiajs/inertia-vue3';
 
-type StrOrNum = string | number
-
-declare global {
-  interface Window {
-    reverseUrl(urlName: string, args?: Record<string, unknown> | StrOrNum | StrOrNum[]): string
-  }
-}
-
 // create a plugin to use window.reverseUrl in our Components
 const routePlugin = {
-  install: (app: App, _options: Record<string, unknown>) => {
+  install: (app, _options) => {
     app.config.globalProperties.$route = window.reverseUrl;
   }
 }

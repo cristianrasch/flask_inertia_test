@@ -13,21 +13,25 @@
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue';
-
-export default defineComponent({
+<script>
+export default {
   name: 'Index',
   data() {
     return {
-      frameworkName: 'Vue 3'
+      frameworkName: 'Vue'
     }
   }
-});
+};
 </script>
 
-<style lang="css">
-.content { width: 75%; margin: auto; text-align: center; font-family: Georgia, Cambria;}
-.content > .logo { max-height: 5em; margin: 0 10pt; }
-.content > .info { color: #787878; }
+<style lang="scss">
+.content {
+  width: 75%;
+  margin: auto;
+  text-align: center;
+  font-family: Georgia, Cambria;
+
+  & > .logo { max-height: 5em; margin: 0 10pt; }
+  & > .info { color: #787878; }
+}
 </style>
