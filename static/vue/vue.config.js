@@ -6,5 +6,8 @@ module.exports = {
     config.plugins.delete('html');
     config.plugins.delete('preload');
     config.plugins.delete('prefetch');
+  },
+  css: {
+    extract: true
   }
 };
