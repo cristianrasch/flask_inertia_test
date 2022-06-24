@@ -1,0 +1,54 @@
+[tool.black]
+line-length = 88
+target-version = ['py310']
+include = '\.pyi?$'
+exclude = '''
+  /(
+      \.eggs
+    | \.git
+    | \.mypy_cache
+    | \.venv
+    | _build
+    | build
+    | dist
+    | migrations
+  )/
+'''
+
+[tool.isort]
+profile = 'black'
+force_grid_wrap = 0
+use_parentheses = true
+combine_as_imports = true
+include_trailing_comma = true
+line_length = 88
+multi_line_output = 3
+skip = 'migrations'
+default_section = 'THIRDPARTY'
+known_first_party = 'sales_outreach'
+known_django = 'django'
+sections=['FUTURE','STDLIB','DJANGO','THIRDPARTY','FIRSTPARTY','LOCALFOLDER']
+
+
+[tool.poetry]
+name = "flask_inertia_test"
+version = "0.1.0"
+description = "Inertia.js + Flask example project"
+authors = ["Cristian Rasch <cristianrasch@fastmail.fm>"]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+Flask = "^2.1.2"
+flask-inertia = "^0.4"
+Flask-DebugToolbar = "^0.13.1"
+python-dotenv = "^0.20.0"
+
+[tool.poetry.dev-dependencies]
+black = "^22.1.0"
+flake8 = "^4.0.1"
+isort = "^5.10.1"
+watchdog = "^2.1.9"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"

@@ -14,9 +14,8 @@ from flask import (
     session,
     url_for,
 )
-from flask_inertia import render_inertia
+from flask_inertia import Inertia, render_inertia
 
-from .ext import inertia
 from .settings import CONFIG
 
 ROOT_DIR = Path(__file__).resolve().parent.parent
@@ -96,20 +95,16 @@ def create_app(config_name=flask_env):
         static_folder=ROOT_DIR / "static" / "dist",
     )
     app.config.from_object(CONFIG[config_name])
-
-    # init inertia
-    inertia.init_app(app)
+    # app.config.from_pyfile(f"{config_filename}.py")
+    inertia = Inertia(app)
     inertia.share(
         "flash_success", lambda: get_flashed_messages(category_filter="success")
     )
     inertia.share("flash_error", lambda: get_flashed_messages(category_filter="error"))
 
-    # endopints
     app.add_url_rule("/", "index", index)
     app.add_url_rule("/about_us", "about", about)
     app.add_url_rule("/contact_us", "contact", contact, methods=["GET", "POST"])
-
-    # CSRF protection
     app.before_request(_check_csrf_token)
     app.after_request(_set_csrf_cookie)
 
