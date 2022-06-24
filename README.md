@@ -3,8 +3,9 @@
 ### Dependencies
 
 * GNU Make
-* Python 3.10
-* Node.js 16
+* [Python 3.10](https://asdf-vm.com/)
+* [Poetry](https://python-poetry.org/)
+* [Node.js 16](https://asdf-vm.com/)
 
 ### Setup instructions
 
