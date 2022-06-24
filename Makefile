@@ -2,6 +2,7 @@ MAKEFLAGS+="-j 2"
 
 init:
 	poetry install
+	cp .env.example .env
 	cd "static/vue" && npm install
 
 dev-python:
