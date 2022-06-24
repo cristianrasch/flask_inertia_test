@@ -18,3 +18,10 @@ make init
 ```bash
 make dev
 ```
+
+### Compile assets for prod
+
+```bash
+npm run --prefix static/vue build:prod
+poetry run flask digest compile
+```

@@ -8,6 +8,7 @@ load_dotenv()
 class Config:
     SECRET_KEY = os.getenv("SECRET_KEY", os.urandom(16))
     INERTIA_TEMPLATE = "base.html"
+    FLASK_STATIC_DIGEST_BLACKLIST_FILTER = []
 
 
 class DevelopmentConfig(Config):

@@ -107,6 +107,17 @@ jsmin = ">=2.2.2"
 tests = ["beautifulsoup4 (>=4.10.0)"]
 
 [[package]]
+name = "flask-static-digest"
+version = "0.2.1"
+description = "Flask extension for md5 tagging and gzipping static files."
+category = "main"
+optional = false
+python-versions = ">=3.6"
+
+[package.dependencies]
+Flask = ">=1.0"
+
+[[package]]
 name = "isort"
 version = "5.10.1"
 description = "A Python utility / library to sort Python imports."
@@ -254,7 +265,7 @@ watchdog = ["watchdog"]
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.10"
-content-hash = "cfc527bfa6a36e21b714ecfa5a54cf6323eba8beb90c82f5fa4283cae7e9ceae"
+content-hash = "e213e18986cb6caf44d80c0365efbc40f1de29a9d67bea96a0fb4c39e8d79f05"
 
 [metadata.files]
 black = [
@@ -308,6 +319,9 @@ flask-debugtoolbar = [
 flask-inertia = [
     {file = "flask-inertia-0.4.tar.gz", hash = "sha256:8b2a62255f173850851dc637858ec0e5642534040c4a0fe4cc2a8f1f175751aa"},
     {file = "flask_inertia-0.4-py2.py3-none-any.whl", hash = "sha256:34bf18fd88b0793bb80fd67ca1366fd8808c44bef08f9bf6dc6611fb942e111f"},
+]
+flask-static-digest = [
+    {file = "Flask-Static-Digest-0.2.1.tar.gz", hash = "sha256:7528b08a2c12dc3a828096b66ee2612f323d50be36d01f2817b767fbb1ceca6e"},
 ]
 isort = [
     {file = "isort-5.10.1-py3-none-any.whl", hash = "sha256:6f62d78e2f89b4500b080fe3a81690850cd254227f27f75c3a0c491a1f351ba7"},
