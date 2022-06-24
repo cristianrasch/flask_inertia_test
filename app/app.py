@@ -92,8 +92,8 @@ flask_env = os.getenv("FLASK_ENV", "production")
 def create_app(config_name=flask_env):
     app = Flask(
         __name__,
-        template_folder=ROOT_DIR / "templates",
         static_folder=ROOT_DIR / "static" / "dist",
+        # template_folder=ROOT_DIR / "templates",
     )
     app.config.from_object(CONFIG[config_name])
 
