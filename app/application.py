@@ -1,96 +1,18 @@
 import os
-import secrets
-import string
-import time
 from pathlib import Path
 
-from flask import (
-    Flask,
-    flash,
-    get_flashed_messages,
-    make_response,
-    redirect,
-    request,
-    session,
-    url_for,
-)
-from flask_inertia import render_inertia
+from flask import Flask, flash, get_flashed_messages
 
 from .ext import flask_static_digest, inertia
 from .settings import CONFIG
-from .context_processors import register_ctx_processors
+from .blueprints.main import main_bp
+from .csrf import check_csrf_token, set_csrf_cookie
 
 ROOT_DIR = Path(__file__).resolve().parent.parent
-CSRF_TOKEN_LENGTH = 25
-ALPHABET = string.ascii_letters + string.digits
-# ALPHABET = string.ascii_letters + string.digits + string.punctuation
+FLASK_ENV = os.getenv("FLASK_ENV", "production")
 
 
-def _check_csrf_token():
-    if request.method == "GET":
-        return
-
-    req_csrf_token = request.headers.get("X-XSRF-TOKEN", "")
-    session_csrf_token = session.pop("csrf_token", "")
-    if req_csrf_token != session_csrf_token:
-        flash(
-            f"Invalid CSRF token: '{req_csrf_token}'"
-            f", expected: '{session_csrf_token}'",
-            "error",
-        )
-        return redirect(request.headers.get("Referer", url_for("index")))
-        # return make_response(f"Invalid CSRF token: '{req_csrf_token}'"
-        #                      f", expected: '{session_csrf_token}'",
-        #                      403)
-
-
-def _gen_csrf_token():
-    return "".join(secrets.choice(ALPHABET) for i in range(CSRF_TOKEN_LENGTH))
-
-
-def _set_csrf_cookie(response):
-    csrf_token = _gen_csrf_token()
-    response.set_cookie("XSRF-TOKEN", csrf_token)
-    session["csrf_token"] = csrf_token
-
-    return response
-
-
-def index():
-    return render_inertia("Index")
-
-
-def about():
-    return render_inertia("StaticPage", {"msg": "About Us"})
-
-
-def contact():
-    errors = {}
-
-    if request.method == "POST":
-        time.sleep(1)
-        form = request.get_json() if request.is_json else request.form
-        name = form.get("name", "").strip()
-        if not name:
-            errors["name"] = "Name is required."
-        if not form.get("email", "").strip():
-            errors["email"] = "Email is required."
-        if not form.get("subject", "").strip():
-            errors["subject"] = "Subject is required."
-
-        if errors:
-            flash("Please correct the error(s) below", "error")
-        else:
-            flash(f"Thank you for your message '{name}'", "success")
-            return redirect(url_for("contact"))
-
-    return render_inertia("Contact", {"msg": "Contact Us", "errors": errors})
-
-
-flask_env = os.getenv("FLASK_ENV", "production")
-
-
-def create_app(config_name=flask_env):
+def create_app(config_name=FLASK_ENV):
     app = Flask(
         __name__,
         template_folder=ROOT_DIR / "templates",
@@ -107,15 +29,11 @@ def create_app(config_name=flask_env):
     )
     inertia.share("flash_error", lambda: get_flashed_messages(category_filter="error"))
 
-    # endopints
-    app.add_url_rule("/", "index", index)
-    app.add_url_rule("/about_us", "about", about)
-    app.add_url_rule("/contact_us", "contact", contact, methods=["GET", "POST"])
+    # blueprints
+    app.register_blueprint(main_bp)
 
     # CSRF protection
-    app.before_request(_check_csrf_token)
-    app.after_request(_set_csrf_cookie)
-
-    register_ctx_processors(app)
+    app.before_request(check_csrf_token)
+    app.after_request(set_csrf_cookie)
 
     return app

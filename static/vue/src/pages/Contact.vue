@@ -84,7 +84,7 @@ export default {
     },
 
     submitForm() {
-      this.form.post(this.$route('contact'), {
+      this.form.post(this.$route('main.contact'), {
         onSuccess: () => {
           this.form.reset()
           this.$refs.image.value = null
@@ -98,4 +98,3 @@ export default {
   },*/
 };
 </script>
-

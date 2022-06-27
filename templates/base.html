@@ -3,17 +3,17 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
-    <!--link ref="stylesheet" href="{{ asset_url_for('static', filename='css/app.css') }}" /-->
+    <!--link ref="stylesheet" href="{{ static_url_for('static', filename='css/app.css') }}" /-->
     <style>
-      @import url('{{ asset_url_for("static", filename="css/app.css") }}');
+      @import url('{{ static_url_for("static", filename="css/app.css") }}');
     </style>
 
     <script lang="javascript">
       {{ inertia.include_router() }}
     </script>
 
-    <script src="{{ asset_url_for('static', filename='js/chunk-vendors.js') }}" defer></script>
-    <script src="{{ asset_url_for('static', filename='js/app.js') }}" defer></script>
+    <script src="{{ static_url_for('static', filename='js/chunk-vendors.js') }}" defer></script>
+    <script src="{{ static_url_for('static', filename='js/app.js') }}" defer></script>
   </head>
 
   <body>

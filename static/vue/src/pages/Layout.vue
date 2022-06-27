@@ -4,9 +4,9 @@
 
     <header>
       <menu>
-        <li><Link :href="$route('index')">Home</Link></li>
-        <li><Link :href="$route('about')">About</Link></li>
-        <li><Link :href="$route('contact')">Contact</Link></li>
+        <li><Link :href="$route('main.index')">Home</Link></li>
+        <li><Link :href="$route('main.about')">About</Link></li>
+        <li><Link :href="$route('main.contact')">Contact</Link></li>
       </menu>
     </header>
 
